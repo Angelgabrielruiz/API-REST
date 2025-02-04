@@ -2,7 +2,6 @@ package infraestructure
 
 import (
 	"demo/src/core"
-	//"fmt"
 	"log"
 )
 
@@ -18,7 +17,6 @@ func NewMySQLRefresco() *MySQLRefresco {
 	return &MySQLRefresco{conn: conn}
 }
 
-// Recibir name y price como parámetros
 func (mysql *MySQLRefresco) Save(name string, price float32) {
 	query := "INSERT INTO refrescos (name, price) VALUES (?, ?)"
 
@@ -96,7 +94,7 @@ func (mysql *MySQLRefresco) Update(id int, name string, price float32) {
 
 	rowsAffected, _ := result.RowsAffected()
 	if rowsAffected == 1 {
-		log.Printf("[MySQL] - Refresco actualizado: %d", rowsAffected)
+		log.Printf("[MySQL] - Refresco actualizado exitosamente: %d", rowsAffected)
 	}
 }
 
@@ -109,6 +107,6 @@ func (mysql *MySQLRefresco) Delete(id int) {
 
 	rowsAffected, _ := result.RowsAffected()
 	if rowsAffected == 1 {
-		log.Printf("[MySQL] - Refresco eliminado: %d", rowsAffected)
+		log.Printf("[MySQL] - Refresco eliminado exitosamente: %d", rowsAffected)
 	}
 }

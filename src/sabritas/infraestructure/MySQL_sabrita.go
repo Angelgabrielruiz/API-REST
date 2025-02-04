@@ -2,7 +2,6 @@ package infraestructure
 
 import (
 	"demo/src/core"
-	//"fmt"
 	"log"
 )
 
@@ -18,7 +17,7 @@ func NewMySQLSabrita() *MySQLSabrita {
 	return &MySQLSabrita{conn: conn}
 }
 
-// Recibir name y price como parámetros
+
 func (mysql *MySQLSabrita) Save(name string, price float32) {
 	query := "INSERT INTO sabritas (name, price) VALUES (?, ?)"
 
