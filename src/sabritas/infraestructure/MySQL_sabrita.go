@@ -112,3 +112,31 @@ func (mysql *MySQLSabrita) Delete(id int) {
 		log.Printf("[MySQL] - sabrita eliminada: %d", rowsAffected)
 	}
 }
+
+
+func (mysql *MySQLSabrita) FilterByNameAndPrice(name string, price float64) ([]map[string]interface{}, error) {
+    query := "SELECT * FROM sabritas WHERE name LIKE ? AND price >= ? ORDER BY price ASC"
+    rows := mysql.conn.FetchRows(query, "%"+name+"%", price)
+    defer rows.Close()
+
+    var sabritas []map[string]interface{}
+    for rows.Next() {
+        var id int
+        var name string
+        var price float64
+        if err := rows.Scan(&id, &name, &price); err != nil {
+            return nil, err
+        }
+        sabritas = append(sabritas, map[string]interface{}{
+            "id":    id,
+            "name":  name,
+            "price": price,
+        })
+    }
+
+    if err := rows.Err(); err != nil {
+        return nil, err
+    }
+
+    return sabritas, nil
+}

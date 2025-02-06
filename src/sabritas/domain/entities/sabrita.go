@@ -1,11 +1,8 @@
 package entities
 
+// Sabrita representa una entidad de sabritas (snacks)
 type Sabrita struct {
-	ID    int32
-	Name  string
-	Price float32
-}
-
-func NewSabrita(name string, price float32) *Sabrita {
-	return &Sabrita{Name: name, Price: price}
+	ID    int     `json:"id"`
+	Name  string  `json:"name"`
+	Price float64 `json:"price"`
 }
